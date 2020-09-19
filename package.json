@@ -1,15 +1,14 @@
 {
 	"name": "gjs-jsx",
 	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
+	"description": "Create GJS (GTK) widgets using JSX.",
 	"scripts": {
 		"build": "webpack"
 	},
-	"author": "",
-	"license": "ISC",
+	"author": "Marc Espín <mespinsanz@gmail.com>",
 	"devDependencies": {
 		"@babel/core": "^7.11.6",
+		"@babel/plugin-proposal-export-default-from": "^7.10.4",
 		"babel-loader": "^8.1.0",
 		"babel-plugin-transform-react-jsx": "^6.24.1",
 		"webpack": "^4.44.2",

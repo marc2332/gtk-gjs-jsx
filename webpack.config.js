@@ -18,6 +18,7 @@ module.exports = {
 						["babel-plugin-transform-react-jsx", {
 							pragma: "gjs",
 						}],
+						"@babel/plugin-proposal-export-default-from"
 					]
 				},
 				exclude: path.resolve(__dirname, './node_modules'),

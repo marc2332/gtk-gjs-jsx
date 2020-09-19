@@ -1,16 +1,26 @@
-import { Button, App, NoteBook, NoteBookPage, Label, Box, gjs } from '../core'
+import { Button, App, Notebook, Label, Box, gjs, StackSidebar } from '../src/main'
 
 const TestApp = App()
 
-const mainWindow = TestApp.addWindow(rootComponent)
+TestApp.addWindow(rootComponent,{
+	height: 450,
+	width: 450
+})
 
 function rootComponent(){
 	return (
 		<Box>
-			<NoteBook>
-				<Page1/>
-				<Page2/>
-			</NoteBook>
+			<StackSidebar>
+				<Box name="Notebook Example">
+					<Notebook>
+						<Page1/>
+						<Page2/>
+					</Notebook>
+				</Box>
+				<Box name="Page 2">
+					<Label> This is page 2 </Label>
+				</Box>
+			</StackSidebar>
 		</Box>
 	)
 }
@@ -29,8 +39,9 @@ function Page1(){
 					<Label>3</Label>
 					<Label>4</Label>
 				</Box>
-				<Button onClick={() => print('Hello World!')}>Click me</Button>
+				<Button onClick={() => print('Hello World!')}>Print Hello World</Button>
 			</Box>
+			
 		</Box>
 	)
 }
