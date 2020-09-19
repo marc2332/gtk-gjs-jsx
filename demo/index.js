@@ -1,4 +1,4 @@
-import { Button, App, NoteBook, NoteBookPage, Label, Box, gjs } from './core'
+import { Button, App, NoteBook, NoteBookPage, Label, Box, gjs } from '../core'
 
 const TestApp = App({
 	id: 'test.app'
