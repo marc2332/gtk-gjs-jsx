@@ -4,7 +4,11 @@ const Gtk = imports.gi.Gtk;
 export function gjs(component,props){
 	const children = [...arguments].slice(2, arguments.length+1)
 	
-	const { children: newChildren , widget } = component({ ...props, children })
+	const args = props || {}
+	
+	args.children = children
+	
+	const { children: newChildren , widget } = component(args)
 	
 	return {
 		widget,

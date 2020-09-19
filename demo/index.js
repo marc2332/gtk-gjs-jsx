@@ -1,8 +1,6 @@
 import { Button, App, NoteBook, NoteBookPage, Label, Box, gjs } from '../core'
 
-const TestApp = App({
-	id: 'test.app'
-})
+const TestApp = App()
 
 const mainWindow = TestApp.addWindow(rootComponent)
 
