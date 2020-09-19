@@ -3,6 +3,7 @@ export Label from './components/label'
 export Notebook from './components/notebook'
 export Button from './components/button'
 export StackSidebar from './components/stack_sidebar'
+export Switch from './components/switch'
 
 imports.gi.versions.Gtk = '3.0'
 const Gtk = imports.gi.Gtk;

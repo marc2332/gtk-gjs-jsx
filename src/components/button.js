@@ -6,13 +6,8 @@ export default function Button({ onClick, children }) {
 			const widget = Gtk.Button.new()
 			widget.set_label(children.filter(child => typeof child === 'string').join(''))
 			
-			children.map(child => {
-				if(typeof child === 'function'){
-					widet.add(child)
-				}
-			})
 			if(onClick){
-				widget.connect('clicked',onClick)
+				widget.connect('clicked', onClick)
 			}
 			return widget
 		},

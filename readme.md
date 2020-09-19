@@ -14,6 +14,7 @@ For now there are just a few partially-working components
 * Box
 * Notebook
 * StackSidebar
+* Switch
 
 All of them are in the demo (located in `./demo/index.js`).
 

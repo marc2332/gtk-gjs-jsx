@@ -1,4 +1,4 @@
-import { useState, Button, App, Notebook, Label, Box, gjs, StackSidebar } from '../src/main'
+import { Switch, useState, Button, App, Notebook, Label, Box, gjs, StackSidebar } from '../src/main'
 
 const TestApp = App()
 
@@ -47,7 +47,8 @@ function Page1(){
 	return (
 		<Box>
 			<Label>Page 1</Label>
-			<Box direction="horizontal">
+			<Box>
+				<Switch onSwitched={() => print('Swtich switched!')}></Switch>
 				<Label>This is page 1</Label>
 				<Box direction="vertical">
 					<Label>1</Label>
