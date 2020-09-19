@@ -3,15 +3,14 @@ const Gtk = imports.gi.Gtk;
 export default function Button({ onClick, children }) {
 	return {
 		widget(){
-			const buttonContent = children[0]
-			
 			const widget = Gtk.Button.new()
+			widget.set_label(children.filter(child => typeof child === 'string').join(''))
 			
-			if(typeof buttonContent == 'string'){
-				widget.set_label(buttonContent)
-			}else{
-				widget.add(buttonContent)
-			}
+			children.map(child => {
+				if(typeof child === 'function'){
+					widet.add(child)
+				}
+			})
 			if(onClick){
 				widget.connect('clicked',onClick)
 			}

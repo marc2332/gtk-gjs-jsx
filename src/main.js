@@ -9,12 +9,30 @@ const Gtk = imports.gi.Gtk;
 
 export function gjs(component,props){
 	const children = [...arguments].slice(2, arguments.length+1)
-	
 	const args = props || {}
-	
-	args.children = children
+	const listeners = []
 		
-	return component(args)
+	args.children = children.map( child => {
+		if(child.getValue){
+			listeners.push(child.getValue)
+			return child.toString()
+		}
+		return child
+	})
+	
+	const comp = component(args)
+	const returning = Object.assign({}, comp)
+	
+	returning.widget = () => {
+		const widget = comp.widget()
+		listeners.forEach(listener => {
+			listener((newValue, oldValue) => {
+				widget.set_label(widget.get_label().replace(oldValue,newValue))
+			})
+		});
+		return widget
+	}
+  return returning
 }
 
 export const App = () =>{
@@ -43,3 +61,43 @@ export const App = () =>{
 		}
 	}
 }
+
+export const useState  = initialValue => {
+	let useValue = initialValue
+	let listenersValue = []
+	let returning = useValue
+	
+	const trick = (v) => {
+		Object.assign(returning,{
+			value: v
+		})
+		
+		return Object.assign(v,{
+			value: v,
+			getValue: listenValue
+		})
+		
+	}
+	
+	const setValue = (v) => {
+		const oldValue = useValue
+		useValue = trick(v)
+		listenersValue.forEach(c => c(useValue, oldValue))
+	
+		return useValue
+	}
+	
+	const listenValue = (listen) => {
+		listenersValue.push(listen)
+		return useValue
+	}
+	
+	useValue = trick(useValue)
+	returning = useValue
+	
+	return [
+		returning,
+		setValue
+	]
+}
+

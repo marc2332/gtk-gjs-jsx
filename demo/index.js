@@ -1,4 +1,4 @@
-import { Button, App, Notebook, Label, Box, gjs, StackSidebar } from '../src/main'
+import { useState, Button, App, Notebook, Label, Box, gjs, StackSidebar } from '../src/main'
 
 const TestApp = App()
 
@@ -20,7 +20,25 @@ function rootComponent(){
 				<Box name="Page 2">
 					<Label> This is page 2 </Label>
 				</Box>
+				<Box name="Test">
+					<Test/>
+				</Box>
 			</StackSidebar>
+		</Box>
+	)
+}
+
+function Test(){
+	
+	let [counter,setCounter] = useState(0)
+		
+	return (
+		<Box direction="vertical">
+			<Label>Counter</Label>
+			<Button 
+				onClick={() => setCounter(counter.value + 1)}>
+				Add: {counter}
+			</Button>
 		</Box>
 	)
 }
@@ -41,7 +59,6 @@ function Page1(){
 				</Box>
 				<Button onClick={() => print('Hello World!')}>Print Hello World</Button>
 			</Box>
-			
 		</Box>
 	)
 }
