@@ -6,7 +6,7 @@ module.exports = {
 		minimize: false,
 	},
 	entry: {
-		index: './index.js',
+		index: './demo/index.js',
 	},
 	module: {
 		rules: [
