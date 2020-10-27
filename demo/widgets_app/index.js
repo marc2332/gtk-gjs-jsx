@@ -1,4 +1,4 @@
-import { Switch, useState, Button, App, Notebook, Label, Box, gjs, StackSidebar } from '../src/main'
+import { Switch, useState, Button, App, Notebook, Label, Box, gjs, StackSidebar } from 'titan'
 
 const TestApp = App()
 

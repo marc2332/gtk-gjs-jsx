@@ -6,7 +6,7 @@ module.exports = {
 		minimize: false,
 	},
 	entry: {
-		index: './demo/index.js',
+		index: './src/main.js',
 	},
 	module: {
 		rules: [
@@ -26,9 +26,9 @@ module.exports = {
 		],
 	},
 	resolve: {
-		extensions: ['.js', '.ts'],
+		extensions: ['.js', '.ts']
 	},
-	target: 'web',
+	target: 'node',
 	output: {
 		filename: 'index.js',
 		path: path.resolve(__dirname, 'dist'),

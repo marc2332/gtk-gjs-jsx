@@ -1,10 +1,12 @@
 {
-	"name": "gjs-jsx",
+	"name": "titan",
 	"version": "1.0.0",
 	"description": "Create GJS (GTK) widgets using JSX.",
+	"main":"cli.js",
 	"scripts": {
-		"demo:1": "webpack && gjs dist/index.js",
-		"demo:2": "webpack --config ./webpack_demo2.config.js && gjs dist/index.js"
+		"build": "webpack",
+		"demo:1": "node cli.js -c demo/welcome_app/config.js && gjs demo/welcome_app/dist/index.js",
+		"demo:2": "node cli.js -c demo/widgets_app/config.js && gjs demo/widgets_app/dist/index.js"
 	},
 	"author": "Marc Espín <mespinsanz@gmail.com>",
 	"devDependencies": {
@@ -14,5 +16,8 @@
 		"babel-plugin-transform-react-jsx": "^6.24.1",
 		"webpack": "^4.44.2",
 		"webpack-cli": "^3.3.12"
+	},
+	"dependencies": {
+		"commander": "^6.2.0"
 	}
 }

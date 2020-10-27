@@ -1,11 +1,11 @@
-import {  App, Label, gjs, Box, Button } from '../src/main'
+import {  App, Label, gjs, Box, Button } from 'titan'
 
 const myApp = App()
 
 myApp.addWindow(rootComponent,{
 	height: 450,
 	width: 450,
-	css: 'demo/test.css'
+	css: 'demo/welcome_app/test.css'
 })
 
 function rootComponent(){
