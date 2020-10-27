@@ -28,9 +28,13 @@ Installing the dependencies:
 
 `npm install`
 
-Building the demo (located in `./demo/index.js`):
+Building the first demo:
 
-`npm run build`
+`npm run demo:1`
+
+Building the second demo:
+
+`npm run demo:2`
 
 Running the demo:
 

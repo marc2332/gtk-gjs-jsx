@@ -3,7 +3,8 @@
 	"version": "1.0.0",
 	"description": "Create GJS (GTK) widgets using JSX.",
 	"scripts": {
-		"build": "webpack"
+		"demo:1": "webpack && gjs dist/index.js",
+		"demo:2": "webpack --config ./webpack_demo2.config.js && gjs dist/index.js"
 	},
 	"author": "Marc Espín <mespinsanz@gmail.com>",
 	"devDependencies": {

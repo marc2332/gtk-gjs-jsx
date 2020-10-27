@@ -42,13 +42,20 @@ export const App = () =>{
 	return {
 		launch(){
 			app.connect('activate', () => {
-				windows.map(({ component, options }) => {
-					let window = new Gtk.ApplicationWindow({ application: app });
+				windows.map(({ component, options, init }) => {
+					const window = new Gtk.ApplicationWindow({ application: app })
+					if(options.css){
+						const css_provider = new Gtk.CssProvider()
+						css_provider.load_from_path(options.css)
+						Gtk.StyleContext.add_provider_for_screen(window.screen, css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER)
+					}
+
 					if(options.width && options.height){
 						window.set_default_size(options.width, options.height)
 					}
 					window.add(component().widget())
 					window.show_all()
+					
 				})
 			})
 			app.run([])
@@ -57,7 +64,7 @@ export const App = () =>{
 		addWindow(rootComponent, options){
 			windows.push({
 				component: rootComponent,
-				options
+				options,
 			})
 		}
 	}
