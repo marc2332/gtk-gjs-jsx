@@ -9,16 +9,23 @@ imports.gi.versions.Gtk = '3.0'
 const Gtk = imports.gi.Gtk;
 
 export function gjs(component,props){
+
 	const children = [...arguments].slice(2, arguments.length+1)
 	const args = props || {}
+	
 	const listeners = []
-		
-	args.children = children.map( child => {
+	args.children = []
+	children.forEach( child => {
 		if(child.getValue){
 			listeners.push(child.getValue)
-			return child.toString()
+			args.children.push(child.toString())
+			return
 		}
-		return child
+		if(Array.isArray(child)){
+			args.children = args.children.concat(child)
+		}else{
+			args.children.push(child)
+		}
 	})
 	
 	const comp = component(args)
@@ -30,7 +37,12 @@ export function gjs(component,props){
 			listener((newValue, oldValue) => {
 				widget.set_label(widget.get_label().replace(oldValue,newValue))
 			})
-		});
+		})
+
+		if(args.mounted) {
+
+			args.mounted(widget)
+		}
 		return widget
 	}
   return returning
@@ -41,7 +53,7 @@ export const App = () =>{
 	let windows = []
 	return {
 		launch(){
-			app.connect('activate', () => {
+			app.connect('activate', async () => {
 				windows.map(({ component, options, init }) => {
 					const window = new Gtk.ApplicationWindow({ application: app })
 					if(options.css){
@@ -53,7 +65,9 @@ export const App = () =>{
 					if(options.width && options.height){
 						window.set_default_size(options.width, options.height)
 					}
-					window.add(component().widget())
+					const resComp = component()
+
+					window.add(resComp.widget())
 					window.show_all()
 					
 				})
@@ -109,3 +123,8 @@ export const useState  = initialValue => {
 	]
 }
 
+export function render(component, widget){
+	const resWidget = component.widget()
+	widget.add(resWidget)
+	resWidget.show_all()
+}

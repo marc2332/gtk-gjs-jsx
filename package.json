@@ -6,7 +6,8 @@
 	"scripts": {
 		"build": "webpack",
 		"demo:1": "node cli.js -c demo/welcome_app/config.js && gjs demo/welcome_app/dist/index.js",
-		"demo:2": "node cli.js -c demo/widgets_app/config.js && gjs demo/widgets_app/dist/index.js"
+		"demo:2": "node cli.js -c demo/widgets_app/config.js && gjs demo/widgets_app/dist/index.js",
+		"demo:3": "node cli.js -c demo/dock/config.js && gjs demo/dock/dist/index.js"
 	},
 	"author": "Marc Espín <mespinsanz@gmail.com>",
 	"devDependencies": {

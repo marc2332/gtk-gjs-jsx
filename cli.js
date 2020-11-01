@@ -48,8 +48,11 @@ webpack({
 	},
 }, (err, stats) => { 
 	if (err || stats.hasErrors()) {
-		console.log(err)
+		const info = stats.toJson();
+		console.log(info.errors)
+	}else{
+		console.log("built")
 	}
-	console.log("built")
+	
 });
 
