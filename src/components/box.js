@@ -1,10 +1,15 @@
 const Gtk = imports.gi.Gtk;
 
-export default function Box({ className, centered = false, name = '', direction = 'vertical' , children }){
+export default function Box({ className, centered = false, name = '', direction = 'vertical' , children, scrollable = false }){
 	return {
 		widget(){
 			
 			const widget = Gtk.Box.new(Gtk.Orientation[direction.toUpperCase()], 20)
+			
+			let comp = widget
+
+			
+			
 			if(className){
 				widget.get_style_context().add_class(className)
 			}
@@ -16,8 +21,8 @@ export default function Box({ className, centered = false, name = '', direction 
 					widget.add(child.widget()) 
 				})
 			}
-			
-			return widget
+		
+			return comp
 		},
 		children,
 		name

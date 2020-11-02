@@ -19,8 +19,9 @@ function rootComponent(){
 		apps.map(async (app) => {
 			readFile(path.join(appDir, app)).then(appContent => {
 				const props = parseDesktop(appContent)
+				if(props.Exec == null) return
 				render((
-					<Button>
+					<Button onClick={() => launchApp(props.Exec)}>
 						{props.Name}
 					</Button>
 				), widget)
@@ -31,9 +32,13 @@ function rootComponent(){
 	return (
 		<Box>
 			<Label>Installed apps:</Label>
-			<Box mounted={mounted}/>
+			<Box mounted={mounted} scrollable={true}/>
 		</Box>
 	)
+}
+
+function launchApp(bin){
+	const process = Gio.Subprocess.new([bin], 0)
 }
 
 function parseDesktop(content){
